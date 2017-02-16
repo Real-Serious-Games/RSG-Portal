@@ -1,0 +1,89 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="layout.UpdateAvailableFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/current_version_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current version: "
+            android:layout_alignParentLeft="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:gravity="center_vertical|end"
+            android:layout_above="@+id/version_spinner"
+            android:layout_alignTop="@+id/current_version" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="0"
+            android:id="@+id/current_version"
+            android:layout_toEndOf="@id/current_version_text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/new_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New version: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_toStartOf="@+id/version_spinner"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/version_spinner"
+            android:layout_below="@+id/current_version_text"
+            android:gravity="center_vertical|end" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/version_spinner"
+            android:spinnerMode="dropdown"
+            android:layout_below="@+id/current_version"
+            android:layout_toEndOf="@+id/current_version_text" />
+
+        <TextView
+            android:id="@+id/download_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Download size: "
+            android:visibility="gone"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp" />
+
+        <!-- TODO: Once we have a good method for calculating the size, show this -->
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:background="#E3E7EA">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Download"
+            android:id="@+id/download_button"
+            android:layout_gravity="end"
+            style="@style/Base.Widget.AppCompat.Button.Borderless" />
+
+    </FrameLayout>
+
+</LinearLayout>

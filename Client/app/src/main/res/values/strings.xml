@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">RSG Portal</string>
+    <string name="application_title">Example app</string>
+    <string name="server_disconnected_warning">No Server Connection</string>
+
+    <!--Icons-->
+    <string name="icon_warning">&#xf071;</string>
+    <string name="icon_ok">&#xf058;</string>
+    <string name="icon_not_ok">&#xf057;</string>
+
+</resources>

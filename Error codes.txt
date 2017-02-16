@@ -1,0 +1,24 @@
+Error code 0 - 100: problem with local data
+    Could not save download
+        Not enough space
+        Permission denied
+    Could not copy file
+        Not enough space
+        Permission denied
+
+Error code 100 - 200: connection issue
+    Could not connect to server to download portal update
+    Could not check for updates
+    Could not download Envizion update
+
+Error code 200 - 300: can connect to server, but invalid/unexpected response
+    Invalid JSON data in portal manifest
+201 Invalid JSON data in Envizion manifest
+202 Invalid JSON data in Envizion data manifest
+    Response other than 200 OK checking for portal update
+    Response other than 200 OK checking for Envizion update
+    Response other than 200 OK downloading portal update
+    Response other than 200 OK downloading Envizion update
+        400 bad request
+        404 not found
+        500 internal server error
