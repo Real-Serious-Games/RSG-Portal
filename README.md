@@ -4,6 +4,19 @@ App for automatically updating Android apps outside of the Play store. RSG Porta
 
 This is used by Real Serious Games for distribution of our B2B Android apps that cannot be released on the Google Play Store but still require ongoing support and updates. The RSG Portal also updates itself, so it's possible to push out new functionality to devices remotely. Since the RSG Portal allows you to host your own server, it also supports auto-updating apps on devices that aren't usually connected to the Internet but do have a local network connection.
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Usage](#usage)
+- [Setting up the client](#setting-up-the-client)
+- [Setting up the server](#setting-up-the-server)
+- [Managing downloads and extra data files](#managing-downloads-and-extra-data-files)
+- [Error codes](#error-codes)
+- [Contributing](#contributing)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Usage
 There are two parts to the RSG Portal: the client which runs on Android devices and the server which uses [Node.js](https://nodejs.org/en/) and can run on a dedicated machine or in the cloud. 
 
@@ -56,6 +69,13 @@ All downloads from the RSG Portal are saved in the Downloads directory before AP
 
 This doesn't protect against man-in-the-middle attacks or provide a particularly cryptographically secure method of verifying the files though, as RSG Portal currently does not support SSL or the ability to embed a private key to verify against in the Portal app.
 
+## Error codes
+Some errors in the client will show an error message with a numerical error code. These codes do not correspond to HTTP status codes, but instead follow a scheme detailed in full in the `Error codes.txt` file.
+
+Error codes pertain to different areas depending on their range: 
+ - 0 - 100 indicate a problem with local data (for example, not enough space to download, invalid permission to write to external storage directory)
+ - 100 - 200 indicate a connection issue such as not being able to reach the server
+ - 200 - 300 indicate a server-side error such as the requested resource not being found on the server or an internal server error
 
 ## Contributing
 
