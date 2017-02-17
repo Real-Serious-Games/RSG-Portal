@@ -1,6 +1,6 @@
 # RSG Portal
 
-App for automatically updating Android apps outside of the Play store. RSG Portal allows you to distribute and install .apk packages on Android phones and tablets, as well as download and manage data files separate to the main app. The RSG Portal will also verify all downloads and can handle courrupted installations or broken downloads.
+App for automatically updating Android apps outside of the Play store. RSG Portal allows you to distribute and install .apk packages on Android phones and tablets, as well as download and manage data files separate to the main app. The RSG Portal will also verify all downloads and can handle corrupted installations or broken downloads.
 
 This is used by Real Serious Games for distribution of our B2B Android apps that cannot be released on the Google Play Store but still require ongoing support and updates. The RSG Portal also updates itself, so it's possible to push out new functionality to devices remotely. Since the RSG Portal allows you to host your own server, it also supports auto-updating apps on devices that aren't usually connected to the Internet but do have a local network connection.
 
@@ -51,7 +51,7 @@ Where "1" corresponds to the current version of the app, which is also a folder 
 
 Inside each numbered folder you should include the APK file of your app, named to match the [bundle identifier](https://developer.android.com/studio/build/application-id.html) of your app, and a `data` folder with any data files required by the app.
 
-Once the resources folder has been cofigured, you can run the server with this command:
+Once the resources folder has been configured, you can run the server with this command:
 ```
 node index --resources=test-resources
 ``` 
@@ -65,7 +65,7 @@ The RSG Portal has the ability to download external data files separate to the m
 File dataDirectory = new File(Environment.getExternalStorageState(), Activity.getPackageName());
 ```
 
-All downloads from the RSG Portal are saved in the Downloads directory before APKs are installed and data files are copied to their correct locations, and the manifest files saved here are used to verify the integrity of installed data files by checking their MD5 sums. This allows you to roll back versions or reinstall without needing to re-download any data from the server, and since the MD5s are computed on the server before files are sent, also protects against courrupted downloads due to the app or server crashing. 
+All downloads from the RSG Portal are saved in the Downloads directory before APKs are installed and data files are copied to their correct locations, and the manifest files saved here are used to verify the integrity of installed data files by checking their MD5 sums. This allows you to roll back versions or reinstall without needing to re-download any data from the server, and since the MD5s are computed on the server before files are sent, also protects against corrupted downloads due to the app or server crashing. 
 
 This doesn't protect against man-in-the-middle attacks or provide a particularly cryptographically secure method of verifying the files though, as RSG Portal currently does not support SSL or the ability to embed a private key to verify against in the Portal app.
 
