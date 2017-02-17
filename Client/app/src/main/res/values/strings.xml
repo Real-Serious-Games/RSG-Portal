@@ -18,4 +18,35 @@
     <string name="new_version">New version: </string>
     <string name="download_size">Download size: </string>
 
+    <!-- CheckForUpdatesActivity -->
+    <string name="contacting_server">Contacting server</string>
+    <string name="checking_for_portal_updates">RSG Portal is checking for updates…</string>
+    <string name="portal_update_required">Portal must be updated before using. Please quit and restart the application by pressing the \'back\' button on the device.</string>
+    <string name="update_found">Update found. This will now be installed.</string>
+    <string name="portal_up_to_date">RSG Portal is up to date.</string>
+    <string name="error_while_checking_for_portal_update">An error occurred while checking for an update to the RSG Portal application: </string>
+    <string name="check_for_updates_spinner_title">RSG Portal…</string>
+    <string name="validating_installation">Validating installation</string>
+    <string name="checking_for_updates">Checking for updates</string>
+    <string name="invalid_response_from_server_201">Invalid response from server. \n\nError code 201</string>
+    <string name="press_back_again_to_quit">Press back again to Quit</string>
+    <string name="not_installed">Not installed</string>
+    <string name="currently_version">Currently version: </string>
+    <string name="invalid_installation_please_uninstall">Invalid installation. Please uninstall.</string>
+    <string name="no_updates">No updates</string>
+    <string name="no_updates_message">No updates are available to download</string>
+    <string name="could_not_check_for_updates">Could not check for updates</string>
+
+    <!-- UpdateAppActivity -->
+    <string name="install_complete">Install complete</string>
+    <string name="finished_installing_app">Finished installing app.</string>
+    <string name="ok">OK</string>
+    <string name="downloading_update">Downloading update</string>
+    <string name="ready_to_install">Ready to install</string>
+    <string name="could_not_download_update">Could not download update</string>
+    <string name="invalid_response_from_server_202">Invalid response from server. \n\nError code 202</string>
+    <string name="installing_update">Installing update…</string>
+    <string name="could_not_install_package">Could not install package</string>
+    <string name="close">Close</string>
+
 </resources>

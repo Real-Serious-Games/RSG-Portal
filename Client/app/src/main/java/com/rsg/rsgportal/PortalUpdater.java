@@ -20,6 +20,7 @@ public class PortalUpdater {
             public void success(final PortalManifest manifest) {
 
                 if (manifest.VersionNumber > PortalAppInfo.AppVersion) {
+                    // TODO Rory Dungan 17/02/17: This should come from a string resource.
                     Notify.Instance().post("There is a new version of the Portal app downloading now.");
                     //notify the caller that the check is complete and the portal app is updating
                     //itself.

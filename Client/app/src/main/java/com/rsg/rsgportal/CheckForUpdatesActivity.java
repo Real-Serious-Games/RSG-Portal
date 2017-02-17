@@ -72,8 +72,8 @@ public class CheckForUpdatesActivity extends AppCompatActivity {
         super.onResume();
 
         //Show UI stating that the portal is checking for self updates
-        getProgressSpinner().setTitle("Contacting server");
-        getProgressSpinner().setMessage("RSG Portal is checking for updates...");
+        getProgressSpinner().setTitle(getString(R.string.contacting_server));
+        getProgressSpinner().setMessage(getString(R.string.checking_for_portal_updates));
         getProgressSpinner().show();
         getProgressSpinner().setCancelable(false);
 
@@ -86,12 +86,12 @@ public class CheckForUpdatesActivity extends AppCompatActivity {
                 serverErrorMessage.setVisibility(View.GONE);
                 connectedToServer = true;
                 if (willUpdate) {
-                    getProgressSpinner().setTitle("Update available");
-                    getProgressSpinner().setMessage("Portal must be updated before using. Please quit and restart the application by pressing the 'back' button on the device.");
-                    Notify.Instance().post("Update found. This will now be installed.");
+                    getProgressSpinner().setTitle(getString(R.string.update_available));
+                    getProgressSpinner().setMessage(getString(R.string.portal_update_required));
+                    Notify.Instance().post(getString(R.string.update_found));
                 } else {
                     //portal is up to date, run check for updates
-                    Notify.Instance().post("RSG Portal is up to date.");
+                    Notify.Instance().post(getString(R.string.portal_up_to_date));
                     validateAndCheckInstallation();
                 }
             }
@@ -100,7 +100,7 @@ public class CheckForUpdatesActivity extends AppCompatActivity {
             public void fail(Exception e) {
                 getProgressSpinner().dismiss();
                 //dismiss UI with an error message
-                Notify.Instance().post("An error occurred while checking for an update to the RSG Portal application: " + e.getMessage());
+                Notify.Instance().post(getString(R.string.error_while_checking_for_portal_update) + e.getMessage());
                 //set the icon to be the server error icon
                 setStatusIconToServerError(getStatusIcon());
                 serverErrorMessage.setVisibility(View.VISIBLE);
@@ -200,11 +200,11 @@ public class CheckForUpdatesActivity extends AppCompatActivity {
                 });
         } else if (Updater != null) {
             getProgressSpinner().show();
-            getProgressSpinner().setTitle("RSG Portal...");
-            getProgressSpinner().setMessage("Validating installation");
+            getProgressSpinner().setTitle(getString(R.string.check_for_updates_spinner_title));
+            getProgressSpinner().setMessage(getString(R.string.validating_installation));
             Updater.validateCurrentInstallation()
                 .then(valid -> {
-                    getProgressSpinner().setMessage("Checking for updates");
+                    getProgressSpinner().setMessage(getString(R.string.checking_for_updates));
                     checkForUpdates()
                         .then(updateAvailable -> {
                             if (!valid) {
@@ -250,7 +250,7 @@ public class CheckForUpdatesActivity extends AppCompatActivity {
             @Override
             public void fail(Exception e) {
                 if (e instanceof JsonParseException) {
-                    showErrorCheckingForUpdatesDialog("Invalid response from server. \n\nError code 201");
+                    showErrorCheckingForUpdatesDialog(getString(R.string.invalid_response_from_server_201));
                 } else {
                     showErrorCheckingForUpdatesDialog(e.getMessage());
                 }
@@ -274,7 +274,7 @@ public class CheckForUpdatesActivity extends AppCompatActivity {
             System.exit(0);
         }
         else {
-            Toast.makeText(this, "Press back again to Quit", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.press_back_again_to_quit), Toast.LENGTH_SHORT).show();
             doExit = true;
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -289,15 +289,15 @@ public class CheckForUpdatesActivity extends AppCompatActivity {
         // Show currently installed version
         int currentlyInstalledVersion = RSGPortalLauncher.Updater().getCurrentLocalVersionNumber();
         if (currentlyInstalledVersion == 0) {
-            setCurrentVersionText("Not installed");
+            setCurrentVersionText(getString(R.string.not_installed));
         } else {
-            setCurrentVersionText("Currently version: " + currentlyInstalledVersion);
+            setCurrentVersionText(getString(R.string.currently_version) + currentlyInstalledVersion);
         }
     }
 
     private void showInstallationValidationFail() {
         TextView currentVersionText = (TextView) findViewById(R.id.status_text);
-        currentVersionText.setText("Invalid installation. Please uninstall.");
+        currentVersionText.setText(getString(R.string.invalid_installation_please_uninstall));
         setStatusIconToNotOK(getStatusIcon());
     }
 
@@ -329,15 +329,15 @@ public class CheckForUpdatesActivity extends AppCompatActivity {
 
     private void showNoUpdateAvailableDialog() {
         new AlertDialog.Builder(this)
-                .setTitle("No updates")
-                .setMessage("No updates are available to download")
+                .setTitle(getString(R.string.no_updates))
+                .setMessage(getString(R.string.no_updates_message))
                 .create()
                 .show();
     }
 
     private void showErrorCheckingForUpdatesDialog(String message) {
         new AlertDialog.Builder(this)
-                .setTitle("Could not check for updates")
+                .setTitle(getString(R.string.could_not_check_for_updates))
                 .setMessage(message)
                 .create()
                 .show();

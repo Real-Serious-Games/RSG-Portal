@@ -89,10 +89,10 @@ public class UpdateAppActivity extends AppCompatActivity implements
      */
     private void alertInstallFinished() {
         new AlertDialog.Builder(UpdateAppActivity.this)
-            .setTitle("Install complete")
-            .setMessage("Finished installing app.")
+            .setTitle(getString(R.string.install_complete))
+            .setMessage(getString(R.string.finished_installing_app))
             .setOnDismissListener(dialog -> this.finish())
-            .setNeutralButton("OK", (dialog, which) -> this.finish())
+            .setNeutralButton(getString(R.string.ok), (dialog, which) -> this.finish())
             .create()
             .show();
     }
@@ -116,7 +116,7 @@ public class UpdateAppActivity extends AppCompatActivity implements
     @Override
     public void onDownloadClicked() {
         setFragment(DownloadingUpdateFragment.newInstance(), true);
-        setTitle("Downloading update");
+        setTitle(getString(R.string.downloading_update));
 
         updater.downloadUpdates(versionToInstall,
                 new GenericCallback<Integer>() {
@@ -138,15 +138,15 @@ public class UpdateAppActivity extends AppCompatActivity implements
                     public void success() {
                         findViewById(R.id.install_button).setEnabled(true);
 
-                        setTitle("Ready to install");
+                        setTitle(getString(R.string.ready_to_install));
                     }
 
                     @Override
                     public void fail(Exception ex) {
                         if (ex instanceof JsonParseException) {
-                            showFailureDialog("Could not download update", "Invalid response from server. \n\nError code 202");
+                            showFailureDialog(getString(R.string.could_not_download_update), getString(R.string.invalid_response_from_server_202));
                         } else {
-                            showFailureDialog("Could not download update", ex.getMessage());
+                            showFailureDialog(getString(R.string.could_not_download_update), ex.getMessage());
                         }
                         Log.e(TAG, ex.getMessage(), ex);
                     }
@@ -189,7 +189,7 @@ public class UpdateAppActivity extends AppCompatActivity implements
     public void onInstallClicked() {
 
         setFragment(InstallingUpdateFragment.newInstance(), true);
-        setTitle("Installing update...");
+        setTitle(getString(R.string.installing_update));
 
         if (updater.uninstallIfNecessary(versionToInstall)) {
             currentState = State.UNINSTALLING_APK;
@@ -221,7 +221,7 @@ public class UpdateAppActivity extends AppCompatActivity implements
 
             @Override
             public void fail(Exception ex) {
-                showFailureDialog("Could not install package", ex.getMessage());
+                showFailureDialog(getString(R.string.could_not_install_package), ex.getMessage());
 
                 Log.e(TAG, ex.getMessage(), ex);
 
@@ -293,7 +293,7 @@ public class UpdateAppActivity extends AppCompatActivity implements
         new AlertDialog.Builder(this)
                 .setTitle(title)
                 .setMessage(message)
-                .setNeutralButton("Close", new DialogInterface.OnClickListener() {
+                .setNeutralButton(getString(R.string.close), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         UpdateAppActivity.this.finish();
