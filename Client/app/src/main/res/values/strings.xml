@@ -8,4 +8,14 @@
     <string name="icon_ok">&#xf058;</string>
     <string name="icon_not_ok">&#xf057;</string>
 
+    <string name="no_installation_detected">No installation detected on device</string>
+    <string name="update_available">Update available</string>
+    <string name="cancel">Cancel</string>
+    <string name="install">Install</string>
+    <string name="download">Download</string>
+
+    <string name="current_version">Current version: </string>
+    <string name="new_version">New version: </string>
+    <string name="download_size">Download size: </string>
+
 </resources>

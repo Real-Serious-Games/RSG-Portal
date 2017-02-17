@@ -20,7 +20,7 @@
             android:id="@+id/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Update available"
+            android:text="@string/update_available"
             android:textColor="@android:color/white"
             android:textSize="32sp"
             android:layout_gravity="bottom"/>
