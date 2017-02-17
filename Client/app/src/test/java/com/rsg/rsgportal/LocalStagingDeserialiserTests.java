@@ -55,13 +55,13 @@ public class LocalStagingDeserialiserTests {
     private void mockManifestLoading(int versionNumber) throws IOException {
         String expectedManifest = "{ \"VersionNumber\": " + versionNumber + "}";
 
-        when(mockFileSystem.loadFile("com.RSG.MyApp/manifest"))
+        when(mockFileSystem.loadFile(AppUpdater.APP_ID + "/manifest"))
                 .thenReturn(expectedManifest.getBytes());
     }
 
     @Test
     public void check_local_version_returns_zero_when_no_manifest_is_present() throws Exception {
-        when(mockFileSystem.loadFile("com.RSG.MyApp/manifest"))
+        when(mockFileSystem.loadFile(AppUpdater.APP_ID + "/manifest"))
             .thenThrow(new IOException());
 
         int actualVersion = testObject.getLocalApplicationVersion();

@@ -121,7 +121,7 @@ public class LocalStagingDeserialiser {
             //just like it was when we downloaded new each time.
             File downloadDirectory = new File(AppEnvironment.getExternalPublicDownloadDirectory(),
                     AppUpdater.APP_ID + "/" + versionNumber);
-            String path = downloadDirectory + "/com.RSG.MyApp.apk";
+            String path = downloadDirectory + "/" + AppUpdater.APP_ID + ".apk";
             //add it to the hashmap just for completeness
             addNewVersionAPKPath(versionNumber, path);
             return path;

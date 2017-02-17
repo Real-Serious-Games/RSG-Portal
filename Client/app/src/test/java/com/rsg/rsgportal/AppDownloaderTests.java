@@ -36,7 +36,7 @@ public class AppDownloaderTests {
 
     private String getBaseUrl() {
         return "http://" + PortalAppInfo.RemoteServerAddress + "/" +
-                "v" + PortalAppInfo.ApiVersion + "/android/com.RSG.MyApp";
+                "v" + PortalAppInfo.ApiVersion + "/android/" + AppUpdater.APP_ID;
     }
 
     private void setUpDefaultContentLengthCallback() {
@@ -167,7 +167,7 @@ public class AppDownloaderTests {
         final int firstFileSize = 100;
         final int secondFileSize = 200;
         final int manifestFileSize = 50;
-        final String firstFileName = baseUrl + "/1/com.RSG.MyApp.apk";
+        final String firstFileName = baseUrl + "/1/" + AppUpdater.APP_ID + ".apk";
         final String secondFileName = baseUrl + "/1/data/Foo.txt";
         final String dataManifestFileName = baseUrl + "/1/manifest";
         final byte[] dataManifest = (
@@ -229,7 +229,7 @@ public class AppDownloaderTests {
 
     @Test
     public void downloads_apk_file() throws Exception {
-        final String fileName = getBaseUrl() + "/1/com.RSG.MyApp.apk";
+        final String fileName = getBaseUrl() + "/1/" + AppUpdater.APP_ID + ".apk";
 
         setUpDefaultDownloadCallbacks();
 
@@ -246,7 +246,7 @@ public class AppDownloaderTests {
                 mock(GenericProgressFeedbackCallback.class));
 
         verify(mockFileSystem, times(1))
-                .getNewFileStream("com.RSG.MyApp/1/com.RSG.MyApp.apk");
+                .getNewFileStream(AppUpdater.APP_ID + "/1/" + AppUpdater.APP_ID + ".apk");
 
         verify(mockHttp, times(1))
                 .downloadFile(eq(fileName), isA(DataOutput.class), isA(ProgressFeedbackCallback.class));
@@ -286,7 +286,7 @@ public class AppDownloaderTests {
                 mock(GenericProgressFeedbackCallback.class));
 
         verify(mockFileSystem, times(1))
-                .getNewFileStream("com.RSG.MyApp/1/data/Foo.txt");
+                .getNewFileStream(AppUpdater.APP_ID + "/1/data/Foo.txt");
 
         verify(mockHttp, times(1))
                 .downloadFile(eq(dataFileName), isA(DataOutput.class), isA(ProgressFeedbackCallback.class));
@@ -297,7 +297,7 @@ public class AppDownloaderTests {
 
         final String baseUrl = getBaseUrl();
 
-        final String secondFilePath = "com.RSG.MyApp/1/data/AlreadyOnDevice.txt";
+        final String secondFilePath = AppUpdater.APP_ID + "/1/data/AlreadyOnDevice.txt";
 
         final String dataManifestUrl = baseUrl + "/1/manifest";
         final byte[] dataManifest = (
@@ -337,11 +337,11 @@ public class AppDownloaderTests {
         doAnswer(invocation -> {
             Object[] args = invocation.getArguments();
             GenericCallback<String> cb = (GenericCallback<String>)args[3];
-            cb.success("com.RSG.MyApp/1/com.RSG.MyApp.apk");
+            cb.success(AppUpdater.APP_ID + "/1/" + AppUpdater.APP_ID + ".apk");
             return null;
         })
         .when(mockFileChecker)
-        .TryGetFileLocally(eq("com.RSG.MyApp.apk"), anyInt(), anyString(), isA(GenericCallback.class));
+        .TryGetFileLocally(eq(AppUpdater.APP_ID + ".apk"), anyInt(), anyString(), isA(GenericCallback.class));
 
         testObject.downloadAppUpdates(1,
                 testManifest,
