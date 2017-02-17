@@ -16,6 +16,8 @@ By default, the app is set up to download and install an app called `com.RSG.MyA
 
 To change the name displayed in the UI for the app, change the `application_title` string value in `Client/app/src/main/res/values/strings.xml`.
 
+Finally, in order to make the app talk to your server, you will need to set the IP or hostname of the server for it to talk to. This is stored in `PortalAppInfo.RemoteServerAddress` inside `Client/app/src/main/java/com/rsg/rsgportal/PortalAppInfo.java`. Note that this does need to include the port the server is running on, which by default is port 3000.
+
 ## Setting up the server
 
 The server requires a fairly recent version of Node.js due to its use of ES6 and has been tested against version 6.9 LTS. Once you have Node.js installed, copy the `Server` directory to the machine you plan to use as the server and run `npm install` to install the dependencies.
