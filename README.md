@@ -1,6 +1,6 @@
 # RSG Portal
 
-App for automatically updating Android apps outside of the Play store. RSG Portal allows you to distribute and install .apk packages on Android phones and tablets, as well as download and manage data files separate to the main app. The RSG Portal will also verify all downloads and can handle corrupted installations or broken downloads.
+App for automatically updating Android apps outside of the Play store (aka sideloading). RSG Portal allows you to update sideloaded apps on Android phones and tablets, as well as download and manage data files separate to the main app. The RSG Portal will also verify all downloads and can handle corrupted installations or broken downloads.
 
 This is used by Real Serious Games for distribution of our B2B Android apps that cannot be released on the Google Play Store but still require ongoing support and updates. The RSG Portal also updates itself, so it's possible to push out new functionality to devices remotely. Since the RSG Portal allows you to host your own server, it also supports auto-updating apps on devices that aren't usually connected to the Internet but do have a local network connection.
 
@@ -20,13 +20,13 @@ This is used by Real Serious Games for distribution of our B2B Android apps that
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Usage
-There are two parts to the RSG Portal: the client which runs on Android devices and the server which uses [Node.js](https://nodejs.org/en/) and can run on a dedicated machine or in the cloud. 
+There are two parts to the RSG Portal: the client which runs on Android devices and the server which uses [Node.js](https://nodejs.org/) and can run on a dedicated machine or in the cloud. 
 
 ## Setting up the server
 
 ### Initial setup
 
-The server requires Node.js version 4.2.6 LTS or later. Once you have Node.js installed, copy the `Server` directory to the machine you plan to use as the server and run `npm install` to install its dependencies.
+The server requires [Node.js](https://nodejs.org/) version 4.2.6 LTS or later. Once you have Node.js installed, copy the `Server` directory to the machine you plan to use as the server. Open a command line in the `Server` directory and run `npm install` to install its dependencies.
 
 Once the dependencies have been installed you will need to set up the folder structure for the resources you want to distribute via the server. An example of how to do this is included in the `test-resources` directory:
 ```
@@ -88,7 +88,7 @@ To activate this version we will also need to update `current_version.json` to l
 }
 ```
 
-This allows you to upload the new files to your server before activating the new version and pushing out an update to the app. New versions can be added without the need to restart the server, as the server reads `current_version.json` each time a client requests the latest version of the app.
+This allows you to upload the new files to your server before activating the new version and pushing out an update to the app. New versions can be added without the need to restart the server, as the server reads `current_version.json` each time a client requests the latest version of the app. The server itself has no built-in functionality for uploading updates but since all you need to do is put the files in the correct folders, uploading new versions be done with a tool like [SCP](https://en.wikipedia.org/wiki/Secure_copy) or [SFTP](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol), either from the command line or using a client like [FileZilla](https://filezilla-project.org/index.php).
 
 Note that when you roll out an update, you don't need to duplicate all files in the previous version if they were not modified. For example, if the APK file changed but `Blah.txt` stayed the same between versions, it could be omitted from version 2 and the app will still automatically get the version of the file that's in version 1 because that's the latest version.
 
